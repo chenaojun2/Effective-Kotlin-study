@@ -1,0 +1,1336 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Item 17 Consider Naming Arguments · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Item 18 Respect coding conventions.html" />
+    
+    
+    <link rel="prev" href="Item 16 Properties should represent state not behavior.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Part 1 Good Code
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" >
+            
+                <span>
+            
+                    
+                    Chapter 1 Safety
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="../Chapter 1 Safety/Introduction.html">
+            
+                <a href="../Chapter 1 Safety/Introduction.html">
+            
+                    
+                    引言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="../Chapter 1 Safety/Item 1 Limit mutability.html">
+            
+                <a href="../Chapter 1 Safety/Item 1 Limit mutability.html">
+            
+                    
+                    Item 1 Limit Mutability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="../Chapter 1 Safety/Item 2 Minimize the scope of variables.html">
+            
+                <a href="../Chapter 1 Safety/Item 2 Minimize the scope of variables.html">
+            
+                    
+                    第2条：最小化变量作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="../Chapter 1 Safety/Item 3 Eliminate platform types as soon as possible.html">
+            
+                <a href="../Chapter 1 Safety/Item 3 Eliminate platform types as soon as possible.html">
+            
+                    
+                    Item 3 Eliminate Platform Types As Soon As Possible
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="../Chapter 1 Safety/Item 4 Do not expose inferred types.html">
+            
+                <a href="../Chapter 1 Safety/Item 4 Do not expose inferred types.html">
+            
+                    
+                    第4条：不要把推断类型暴露给外部
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="../Chapter 1 Safety/Item 5 Specify your expectations on arguments and state.html">
+            
+                <a href="../Chapter 1 Safety/Item 5 Specify your expectations on arguments and state.html">
+            
+                    
+                    Item 5 Specify Your Expectations On Arguments And State
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.7" data-path="../Chapter 1 Safety/Item 6 Prefer standard errors to custom ones.html">
+            
+                <a href="../Chapter 1 Safety/Item 6 Prefer standard errors to custom ones.html">
+            
+                    
+                    第6条：尽可能使用标准库中提供的异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.8" data-path="../Chapter 1 Safety/Item 7 Prefer null or Failure result when the lack of result is possible.html">
+            
+                <a href="../Chapter 1 Safety/Item 7 Prefer null or Failure result when the lack of result is possible.html">
+            
+                    
+                    Item 7 Prefer Null Or Failure Result When The Lack Of Result Is Possible
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.9" data-path="../Chapter 1 Safety/Item 8 Handle nulls properly.html">
+            
+                <a href="../Chapter 1 Safety/Item 8 Handle nulls properly.html">
+            
+                    
+                    Item 8 Handle Nulls Properly
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.10" data-path="../Chapter 1 Safety/Item 9 Close resources with use.html">
+            
+                <a href="../Chapter 1 Safety/Item 9 Close resources with use.html">
+            
+                    
+                    Item 9 Close Resources With Use
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.11" data-path="../Chapter 1 Safety/Item 10 Write unit tests.html">
+            
+                <a href="../Chapter 1 Safety/Item 10 Write unit tests.html">
+            
+                    
+                    Item 10 Write Unit Tests
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" >
+            
+                <span>
+            
+                    
+                    Chapter 2 Readability
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="Introduction.html">
+            
+                <a href="Introduction.html">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="Item 11 Design for readability.html">
+            
+                <a href="Item 11 Design for readability.html">
+            
+                    
+                    Item 11 Design For Readability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.3" data-path="Item 12 Operator meaning should be consistent with its function name.html">
+            
+                <a href="Item 12 Operator meaning should be consistent with its function name.html">
+            
+                    
+                    Item 12 Operator Meaning Should Be Consistent With Its Function Name
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.4" data-path="Item 13 Avoid returning or operating on Unit?.html">
+            
+                <a href="Item 13 Avoid returning or operating on Unit?.html">
+            
+                    
+                    Item 13 Avoid Returning Or Operating On Unit
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.5" data-path="Item 14 Specify the variable type when it is not clear.html">
+            
+                <a href="Item 14 Specify the variable type when it is not clear.html">
+            
+                    
+                    Item 14 Specify The Variable Type When It Is Not Clear
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.6" data-path="Item 15 Consider referencing receivers explicitly.html">
+            
+                <a href="Item 15 Consider referencing receivers explicitly.html">
+            
+                    
+                    Item 15 Consider Referencing Receivers Explicitly
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.7" data-path="Item 16 Properties should represent state not behavior.html">
+            
+                <a href="Item 16 Properties should represent state not behavior.html">
+            
+                    
+                    Item 16 Properties Should Represent State Not Behavior
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2.8" data-path="Item 17 Consider naming arguments.html">
+            
+                <a href="Item 17 Consider naming arguments.html">
+            
+                    
+                    Item 17 Consider Naming Arguments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.9" data-path="Item 18 Respect coding conventions.html">
+            
+                <a href="Item 18 Respect coding conventions.html">
+            
+                    
+                    Item 18 Respect Coding Conventions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Part 2 Code Design
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <span>
+            
+                    
+                    Chapter 3 Reusability
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../Part 2 Code design/Chapter 3 Reusability/Introduction.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Introduction.html">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../../Part 2 Code design/Chapter 3 Reusability/Item 19 Do not repeat knowledge.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Item 19 Do not repeat knowledge.html">
+            
+                    
+                    Item 19 Do Not Repeat Knowledge
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../../Part 2 Code design/Chapter 3 Reusability/Item 20 Do not repeat common algorithms.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Item 20 Do not repeat common algorithms.html">
+            
+                    
+                    Item 20 Do Not Repeat Common Algorithms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4" data-path="../../Part 2 Code design/Chapter 3 Reusability/Item 21 Use property delegation to extract common property patterns.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Item 21 Use property delegation to extract common property patterns.html">
+            
+                    
+                    Item 21 Use Property Delegation To Extract Common Property Patterns
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.5" data-path="../../Part 2 Code design/Chapter 3 Reusability/Item 22 Use generics when implementing common algorithms.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Item 22 Use generics when implementing common algorithms.html">
+            
+                    
+                    Item 22 Use Generics When Implementing Common Algorithms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="../../Part 2 Code design/Chapter 3 Reusability/Item 23 Avoid shadowing type parameters.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Item 23 Avoid shadowing type parameters.html">
+            
+                    
+                    Item 23 Avoid Shadowing Type Parameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="../../Part 2 Code design/Chapter 3 Reusability/Item 24 Consider variance for generic types.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Item 24 Consider variance for generic types.html">
+            
+                    
+                    Item 24 Consider Variance For Generic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.8" data-path="../../Part 2 Code design/Chapter 3 Reusability/Item 25 Reuse between different platforms by extracting common modules.html">
+            
+                <a href="../../Part 2 Code design/Chapter 3 Reusability/Item 25 Reuse between different platforms by extracting common modules.html">
+            
+                    
+                    Item 25 Reuse Between Different Platforms By Extracting Common Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" >
+            
+                <span>
+            
+                    
+                    Chapter 4 Abstraction Design
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Introduction.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Introduction.html">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Item 26 Each function should be written in terms of a single level of abstraction.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Item 26 Each function should be written in terms of a single level of abstraction.html">
+            
+                    
+                    Item 26 Each Function Should Be Written In Terms Of A Single Level Of Abstraction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.3" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Item 27 Use abstraction to protect code against changes.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Item 27 Use abstraction to protect code against changes.html">
+            
+                    
+                    Item 27 Use Abstraction To Protect Code Against Changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.4" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Item 28 Specify API stability.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Item 28 Specify API stability.html">
+            
+                    
+                    Item 28 Specify API Stability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.5" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Item 29 Consider wrapping external API.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Item 29 Consider wrapping external API.html">
+            
+                    
+                    Item 29 Consider Wrapping External API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.6" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Item 30 Minimize elements visibility.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Item 30 Minimize elements visibility.html">
+            
+                    
+                    Item 30 Minimize Elements Visibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.7" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Item 31 Define contract with documentation.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Item 31 Define contract with documentation.html">
+            
+                    
+                    Item 31 Define Contract With Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.8" data-path="../../Part 2 Code design/Chapter 4 Abstraction design/Item 32 Respect abstraction contracts.html">
+            
+                <a href="../../Part 2 Code design/Chapter 4 Abstraction design/Item 32 Respect abstraction contracts.html">
+            
+                    
+                    Item 32 Respect Abstraction Contracts
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" >
+            
+                <span>
+            
+                    
+                    Chapter 5 Object Creation
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1" data-path="../../Part 2 Code design/Chapter 5 Object creation/Introduction.html">
+            
+                <a href="../../Part 2 Code design/Chapter 5 Object creation/Introduction.html">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2" data-path="../../Part 2 Code design/Chapter 5 Object creation/Item 33 Consider factory functions instead of constructors.html">
+            
+                <a href="../../Part 2 Code design/Chapter 5 Object creation/Item 33 Consider factory functions instead of constructors.html">
+            
+                    
+                    Item 33 Consider Factory Functions Instead Of Constructors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3" data-path="../../Part 2 Code design/Chapter 5 Object creation/Item 34 Consider a primary constructor with named optional arguments.html">
+            
+                <a href="../../Part 2 Code design/Chapter 5 Object creation/Item 34 Consider a primary constructor with named optional arguments.html">
+            
+                    
+                    Item 34 Consider A Primary Constructor With Named Optional Arguments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.4" data-path="../../Part 2 Code design/Chapter 5 Object creation/Item 35 Consider defining a DSL for complex object creation.html">
+            
+                <a href="../../Part 2 Code design/Chapter 5 Object creation/Item 35 Consider defining a DSL for complex object creation.html">
+            
+                    
+                    Item 35 Consider Defining A DSL For Complex Object Creation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" >
+            
+                <span>
+            
+                    
+                    Chapter 6 Class Design
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.1" data-path="../../Part 2 Code design/Chapter 6 Class design/Introduction.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Introduction.html">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 36 Prefer composition over inheritance.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 36 Prefer composition over inheritance.html">
+            
+                    
+                    Item 36 Prefer Composition Over Inheritance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.3" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 37 Use the data modifier to represent a bundle of data.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 37 Use the data modifier to represent a bundle of data.html">
+            
+                    
+                    Item 37 Use The Data Modifier To Represent A Bundle Of Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.4" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 38 Use function types instead of interfaces to pass operations and actions.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 38 Use function types instead of interfaces to pass operations and actions.html">
+            
+                    
+                    Item 38 Use Function Types Instead Of Interfaces To Pass Operations And Actions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 39 Prefer class hierarchies to tagged classes.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 39 Prefer class hierarchies to tagged classes.html">
+            
+                    
+                    Item 39 Prefer Class Hierarchies To Tagged Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.6" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 40 Respect the contract of  equals.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 40 Respect the contract of  equals.html">
+            
+                    
+                    Item 40 Respect The Contract Of Equals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.7" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 41 Respect the contract of  hashCode.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 41 Respect the contract of  hashCode.html">
+            
+                    
+                    Item 41 Respect The Contract Of Hash Code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.8" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 42 Respect the contract of compareTo.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 42 Respect the contract of compareTo.html">
+            
+                    
+                    Item 42 Respect The Contract Of Compare To
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.9" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 43 Consider extracting non-essential parts of your API into extensions.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 43 Consider extracting non-essential parts of your API into extensions.html">
+            
+                    
+                    Item 43 Consider Extracting Non Essential Parts Of Your API Into Extensions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.10" data-path="../../Part 2 Code design/Chapter 6 Class design/Item 44 Avoid member extensions.html">
+            
+                <a href="../../Part 2 Code design/Chapter 6 Class design/Item 44 Avoid member extensions.html">
+            
+                    
+                    Item 44 Avoid Member Extensions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Part 3 Efficiency
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    Chapter 7 Make It Cheap
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../../Part 3 Efficiency/Chapter 7 Make it cheap/Introduction.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 7 Make it cheap/Introduction.html">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 45 Avoid unnecessary object creation.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 45 Avoid unnecessary object creation.html">
+            
+                    
+                    Item 45 Avoid Unnecessary Object Creation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 46 Use inline modifier for functions with parameters of functional types.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 46 Use inline modifier for functions with parameters of functional types.html">
+            
+                    
+                    Item 46 Use Inline Modifier For Functions With Parameters Of Functional Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 47 Consider using inline classes.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 47 Consider using inline classes.html">
+            
+                    
+                    Item 47 Consider Using Inline Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.5" data-path="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 48 Eliminate obsolete object references.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 7 Make it cheap/Item 48 Eliminate obsolete object references.html">
+            
+                    
+                    Item 48 Eliminate Obsolete Object References
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    Chapter 8 Efficient Collection Processing
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Introduction.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Introduction.html">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 49 Prefer Sequence for big collections with more than one processing step.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 49 Prefer Sequence for big collections with more than one processing step.html">
+            
+                    
+                    Item 49 Prefer Sequence For Big Collections With More Than One Processing Step
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 50 Limit the number of operations.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 50 Limit the number of operations.html">
+            
+                    
+                    Item 50 Limit The Number Of Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 51 Consider Arrays with primitives for performance-critical processing.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 51 Consider Arrays with primitives for performance-critical processing.html">
+            
+                    
+                    Item 51 Consider Arrays With Primitives For Performance Critical Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.5" data-path="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 52 Consider using mutable collections.html">
+            
+                <a href="../../Part 3 Efficiency/Chapter 8 Efficient collection processing/Item 52 Consider using mutable collections.html">
+            
+                    
+                    Item 52 Consider Using Mutable Collections
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Item 17 Consider Naming Arguments</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="item-17-consider-naming-arguments">Item 17: Consider naming arguments</h2>
+<p>When you read a code, it is not always clear what an argument means. Take a look at the following example:</p>
+<pre><code class="lang-kotlin"><span class="hljs-variable"><span class="hljs-keyword">val</span> text</span> = (<span class="hljs-number">1.</span><span class="hljs-number">.10</span>).joinToString(<span class="hljs-string">&quot;|&quot;</span>)
+</code></pre>
+<p>What is <code>&quot;|&quot;</code>? If you know <code>joinToString</code> well, you know that it is the <code>separator</code>. Although it could just as well be the <code>prefix</code>. It is not clear at all<a href="chap65.xhtml#fn-footnote_21_note">3</a>. We can make it easier to read by clarifying those arguments whose values do not clearly indicate what they mean. The best way to do that is by using named arguments:</p>
+<pre><code class="lang-kotlin"><span class="hljs-variable"><span class="hljs-keyword">val</span> text</span> = (<span class="hljs-number">1.</span><span class="hljs-number">.10</span>).joinToString(separator = <span class="hljs-string">&quot;|&quot;</span>)
+</code></pre>
+<p>We could achieve a similar result by naming variable:</p>
+<pre><code class="lang-kotlin"><span class="hljs-variable"><span class="hljs-keyword">val</span> separator</span> = <span class="hljs-string">&quot;|&quot;</span>
+<span class="hljs-variable"><span class="hljs-keyword">val</span> text</span> = (<span class="hljs-number">1.</span><span class="hljs-number">.10</span>).joinToString(separator)
+</code></pre>
+<p>Although naming the argument is more reliable. A variable name specifies developer intention, but not necessarily correctness. What if a developer made a mistake and placed the variable in the wrong position? What if the order of parameters changed? Named arguments protect us from such situations while named values do not. This is why it is still reasonable to use named arguments when we have values named anyway:</p>
+<pre><code class="lang-kotlin"><span class="hljs-variable"><span class="hljs-keyword">val</span> separator</span> = <span class="hljs-string">&quot;|&quot;</span>
+<span class="hljs-variable"><span class="hljs-keyword">val</span> text</span> = (<span class="hljs-number">1.</span><span class="hljs-number">.10</span>).joinToString(separator = separator)
+</code></pre>
+<h3 id="when-should-we-use-named-arguments">When should we use named arguments?</h3>
+<p>Clearly, named arguments are longer, but they have two important advantages:</p>
+<ul>
+<li>Name that indicates what value is expected. </li>
+<li>They are safer because they are independent of order.</li>
+</ul>
+<p>The argument name is important information not only for a developer using this function but also for the one reading how it was used. Take a look at this call:</p>
+<pre><code class="lang-kotlin">sleep(<span class="hljs-number">100</span>)
+</code></pre>
+<p>How much will it sleep? 100 ms? Maybe 100 seconds? We can clarify it using a named argument:</p>
+<pre><code class="lang-kotlin">sleep(timeMillis = <span class="hljs-number">100</span>)
+</code></pre>
+<p>This is not the only option for clarification in this case. In statically typed languages like Kotlin, the first mechanism that protects us when we pass arguments is the parameter type. We could use it here to express information about time unit:</p>
+<pre><code class="lang-kotlin">sleep(Millis(<span class="hljs-number">100</span>))
+</code></pre>
+<p>Or we could use an extension property to create a DSL-like syntax:</p>
+<pre><code class="lang-kotlin">sleep(<span class="hljs-number">100.</span>ms)
+</code></pre>
+<p>Types are a good way to pass such information. If you are concerned about efficiency, use inline classes as described in <em>Item 46: Use inline modifier for functions with parameters of functional types</em>. They help us with parameter safety, but they do not solve all problems. Some arguments might still be unclear. Some arguments might still be placed on wrong positions. This is why I still suggest considering named arguments, especially for parameters:</p>
+<ul>
+<li>with default arguments,</li>
+<li>with the same type as other parameters,</li>
+<li>of functional type, if they&#x2019;re not the last parameter.</li>
+</ul>
+<h3 id="parameters-with-default-arguments">Parameters with default arguments</h3>
+<p>When a property has a default argument, we should nearly always use it by name. Such optional parameters are changed more often than those that are required. We don&#x2019;t want to miss such a change. Function name generally indicates what are its non-optional arguments, but not what are its optional ones. This is why it is safer and generally cleaner to name optional arguments.<a href="chap65.xhtml#fn-footnote_22_note">4</a></p>
+<h3 id="many-parameters-with-the-same-type">Many parameters with the same type</h3>
+<p>As we said, when parameters have different types, we are generally safe from placing an argument at an incorrect position. There is no such freedom when some parameters have the same type. </p>
+<pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">sendEmail</span><span class="hljs-params">(to: <span class="hljs-type">String, message: String</span>)</span> { <span class="hljs-comment">/*...*/</span> }</span>
+</code></pre>
+<p>With a function like this, it is good to clarify arguments using names:</p>
+<pre><code class="lang-kotlin">sendEmail(
+   to = <span class="hljs-string">&quot;contact@kt.academy&quot;</span>,
+   message = <span class="hljs-string">&quot;Hello, ...&quot;</span>
+)
+</code></pre>
+<h3 id="parameters-of-function-type">Parameters of function type</h3>
+<p>Finally, we should treat parameters with function types specially. There is one special position for such parameters in Kotlin: the last position. Sometimes a function name describes an argument of a function type. For instance, when we see <code>repeat</code>, we expect that a lambda after that is the block of code that should be repeated. When you see <code>thread</code>, it is intuitive that the block after that is the body of this new thread. Such names only describe the function used at the last position. </p>
+<pre><code class="lang-kotlin">thread {
+   <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>All other arguments with function types should be named because it is easy to misinterpret them. For instance, take a look at this simple view DSL:</p>
+<pre><code class="lang-kotlin"><span class="hljs-variable"><span class="hljs-keyword">val</span> view</span> = linearLayout {
+   text(<span class="hljs-string">&quot;Click below&quot;</span>)
+   button({ <span class="hljs-comment">/* 1 */</span> }, { <span class="hljs-comment">/* 2 */</span> })
+}
+</code></pre>
+<p>Which function is a part of this builder and which one is an on-click listener? We should clarify it by naming the listener and moving builder outside of arguments:</p>
+<pre><code class="lang-kotlin"><span class="hljs-variable"><span class="hljs-keyword">val</span> view</span> = linearLayout {
+   text(<span class="hljs-string">&quot;Click below&quot;</span>)
+   button(onClick = { <span class="hljs-comment">/* 1 */</span> }) {
+      <span class="hljs-comment">/* 2 */</span>
+   }
+}
+</code></pre>
+<p>Multiple optional arguments of a function type can be especially confusing:</p>
+<pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">call</span><span class="hljs-params">(before: <span class="hljs-type">(</span>)</span>-&gt;<span class="hljs-keyword">Unit</span> = {}, after: <span class="hljs-params">()</span>-&gt;<span class="hljs-keyword">Unit</span> = {}){</span>
+   before()
+   print(<span class="hljs-string">&quot;Middle&quot;</span>)
+   after()
+}
+
+call({ print(<span class="hljs-string">&quot;CALL&quot;</span>) }) <span class="hljs-comment">// CALLMiddle</span>
+call { print(<span class="hljs-string">&quot;CALL&quot;</span>) }  <span class="hljs-comment">// MiddleCALL</span>
+</code></pre>
+<p>To prevent such situations, when there is no single argument of a function type with special meaning, name them all:</p>
+<pre><code class="lang-kotlin">call(before = { print(<span class="hljs-string">&quot;CALL&quot;</span>) }) <span class="hljs-comment">// CALLMiddle</span>
+call(after = { print(<span class="hljs-string">&quot;CALL&quot;</span>) })  <span class="hljs-comment">// MiddleCALL</span>
+</code></pre>
+<p>This is especially true for reactive libraries. For instance, in RxJava when we subscribe to an <code>Observable</code>, we can set functions that should be called:</p>
+<ul>
+<li>on every received item</li>
+<li>in case of error,</li>
+<li>after the observable is finished. </li>
+</ul>
+<p>In Java I&#x2019;ve often seen people setting them up using lambda expressions, and specifying in comments which method each lambda expression is:</p>
+<pre><code class="lang-kotlin"><span class="hljs-comment">// Java</span>
+observable.getUsers()
+       .subscribe((List<span class="hljs-type">&lt;User&gt;</span> users) -&gt; { <span class="hljs-comment">// onNext</span>
+           <span class="hljs-comment">// ...</span>
+       }, (Throwable throwable) -&gt; { <span class="hljs-comment">// onError</span>
+           <span class="hljs-comment">// ...</span>
+       }, () -&gt; { <span class="hljs-comment">// onCompleted</span>
+           <span class="hljs-comment">// ...</span>
+       });
+</code></pre>
+<p>In Kotlin we can make a step forward and use named arguments instead:</p>
+<pre><code class="lang-kotlin">observable.getUsers()
+   .subscribeBy(
+       onNext = { users: List<span class="hljs-type">&lt;User&gt;</span> -&gt;
+           <span class="hljs-comment">// ...</span>
+       },
+       onError = { throwable: Throwable -&gt;
+           <span class="hljs-comment">// ...</span>
+       },
+       onCompleted = {
+           <span class="hljs-comment">// ...</span>
+       })
+</code></pre>
+<p>Notice that I changed function name from <code>subscribe</code> to <code>subscribeBy</code>. It is because <code>RxJava</code> is written in Java and <strong>we cannot use named arguments when we call Java functions</strong>. It is because Java does not preserve information about function names. To be able to use named arguments we often need to make our Kotlin wrappers for those functions (extension functions that are alternatives to those functions). </p>
+<h3 id="summary">Summary</h3>
+<p>Named arguments are not only useful when we need to skip some default values. They are important information for developers reading our code, and they can improve the safety of our code. We should consider them especially when we have more parameters with the same type (or with functional types) and for optional arguments. When we have multiple parameters with functional types, they should almost always be named. An exception is the last function argument when it has a special meaning, like in DSL.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Item 16 Properties should represent state not behavior.html" class="navigation navigation-prev " aria-label="Previous page: Item 16 Properties Should Represent State Not Behavior">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Item 18 Respect coding conventions.html" class="navigation navigation-next " aria-label="Next page: Item 18 Respect Coding Conventions">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Item 17 Consider Naming Arguments","level":"1.2.2.8","depth":3,"next":{"title":"Item 18 Respect Coding Conventions","level":"1.2.2.9","depth":3,"path":"Part 1 Good code/Chapter 2 Readability/Item 18 Respect coding conventions.md","ref":"Part 1 Good code/Chapter 2 Readability/Item 18 Respect coding conventions.md","articles":[]},"previous":{"title":"Item 16 Properties Should Represent State Not Behavior","level":"1.2.2.7","depth":3,"path":"Part 1 Good code/Chapter 2 Readability/Item 16 Properties should represent state not behavior.md","ref":"Part 1 Good code/Chapter 2 Readability/Item 16 Properties should represent state not behavior.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Part 1 Good code/Chapter 2 Readability/Item 17 Consider naming arguments.md","mtime":"2021-12-05T17:48:51.280Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-12-05T17:49:32.539Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
