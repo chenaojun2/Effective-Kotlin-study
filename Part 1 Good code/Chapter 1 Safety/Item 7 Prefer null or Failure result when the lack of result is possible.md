@@ -1,8 +1,11 @@
 ## Item 7: Prefer `null` or `Failure` result when the lack of result is possible
+## 更多的使用 `null` or `Failure` 当可能缺乏结果的时候
 
 Sometimes, a function cannot produce its desired result. A few common examples are:
+有时，一个函数不能产生它想要的结果。一些常见的例子是:
 
 - We try to get data from some server, but there is a problem with our internet connection
+- 我们试图从一些服务器获取数据，但我们的互联网连接有一个问题
 - We try to get the first element that matches some criteria, but there is no such element in our list
 - We try to parse an object from the text, but this text is malformatted
 
