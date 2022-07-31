@@ -1,4 +1,5 @@
 # Chapter 3: Reusability
+# 可重用性
 
 Have you ever wondered how the `System.out.print` function works (`print` function in Kotlin/JVM)? It’s one of the most basic functions used again and again and yet, would you be able to implement it yourself if it would vanish one day? Truth is that this is not an easy task. Especially if the rest of java.io would vanish as well. You would need to implement the communication with the operating system in C using JNI, separately for each operating system you support[1](chap65.xhtml#fn-footnote_30_note). Believe me, implementing it once is terrifying. Implementing it again and again in every project would be a horror. 
 
