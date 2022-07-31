@@ -1137,14 +1137,17 @@
                                 <section class="normal markdown-section">
                                 
                                 <h2 id="item-5-specify-your-expectations-on-arguments-and-state">Item 5: Specify your expectations on arguments and state</h2>
-<p>When you have expectations, declare them as soon as possible. We do that in Kotlin mainly using:</p>
+<h2 id="&#x660E;&#x786E;&#x5BF9;&#x53C2;&#x6570;&#x548C;&#x72B6;&#x6001;&#x7684;&#x671F;&#x671B;">&#x660E;&#x786E;&#x5BF9;&#x53C2;&#x6570;&#x548C;&#x72B6;&#x6001;&#x7684;&#x671F;&#x671B;</h2>
+<p>When you have expectations, declare them as soon as possible. We do that in Kotlin mainly using:
+&#x5F53;&#x4F60;&#x6709;&#x671F;&#x671B;&#x65F6;&#xFF0C;&#x5C3D;&#x5FEB;&#x5BA3;&#x5E03;&#x3002;&#x6211;&#x4EEC;&#x5728;Kotlin&#x4E3B;&#x8981;&#x4F7F;&#x7528;:</p>
 <ul>
-<li><code>require</code> block - a universal way to specify expectations on arguments.</li>
-<li><code>check</code> block - a universal way to specify expectations on the state.</li>
-<li><code>assert</code> block - a universal way to check if something is true. Such checks on the JVM will be evaluated only on the testing mode.</li>
+<li><code>require</code> block - a universal way to specify expectations on arguments.&#x4E00;&#x79CD;&#x6307;&#x5B9A;&#x53C2;&#x6570;&#x671F;&#x671B;&#x503C;&#x7684;&#x901A;&#x7528;&#x65B9;&#x6CD5;&#x3002;</li>
+<li><code>check</code> block - a universal way to specify expectations on the state.&#x4E00;&#x79CD;&#x901A;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x8BF4;&#x660E;&#x5BF9;&#x72B6;&#x6001;&#x7684;&#x671F;&#x671B;</li>
+<li><code>assert</code> block - a universal way to check if something is true. Such checks on the JVM will be evaluated only on the testing mode.&#xFF1A;&#x8FD9;&#x662F;&#x68C0;&#x9A8C;&#x67D0;&#x4EF6;&#x4E8B;&#x662F;&#x5426;&#x6B63;&#x786E;&#x7684;&#x901A;&#x7528;&#x65B9;&#x6CD5;&#x3002;JVM&#x4E0A;&#x7684;&#x8FD9;&#x79CD;&#x68C0;&#x67E5;&#x5C06;&#x53EA;&#x5728;&#x6D4B;&#x8BD5;&#x6A21;&#x5F0F;&#x4E0B;&#x8FDB;&#x884C;&#x8BC4;&#x4F30;&#x3002;</li>
 <li>Elvis operator with <code>return</code> or <code>throw</code>.</li>
 </ul>
 <p>Here is an example using those mechanisms:</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x673A;&#x5236;&#x7684;&#x4F8B;&#x5B50;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-comment">// Part of Stack&lt;T&gt;</span>
 <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">pop</span><span class="hljs-params">(num: <span class="hljs-type">Int</span> = 1)</span>: List<span class="hljs-type">&lt;T&gt;</span> {</span>
    require(num <span class="hljs-type">&lt;= size) { 
@@ -1158,21 +1161,44 @@
 }
 </span></code></pre>
 <p>Specifying experiences this way does not free us from the necessity to specify those expectations in the documentation, but it is really helpful anyway. Such declarative checks have many advantages:</p>
+<p>&#x4EE5;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x6307;&#x5B9A;&#x7ECF;&#x9A8C;&#x5E76;&#x4E0D;&#x80FD;&#x4F7F;&#x6211;&#x4EEC;&#x4ECE;&#x5728;&#x6587;&#x6863;&#x4E2D;&#x6307;&#x5B9A;&#x8FD9;&#x4E9B;&#x671F;&#x671B;&#x7684;&#x5FC5;&#x8981;&#x6027;&#x4E2D;&#x89E3;&#x8131;&#x51FA;&#x6765;&#xFF0C;&#x4F46;&#x65E0;&#x8BBA;&#x5982;&#x4F55;&#x5B83;&#x786E;&#x5B9E;&#x5F88;&#x6709;&#x5E2E;&#x52A9;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x58F0;&#x660E;&#x6027;&#x68C0;&#x67E5;&#x6709;&#x5F88;&#x591A;&#x4F18;&#x70B9;:</p>
 <ul>
-<li>Expectations are visible even to those programmers who are not reading the documentation.</li>
-<li>If they are not satisfied, the function throws an exception instead of leading to unexpected behavior. It is important that these exceptions are thrown before the state is modified and so we will not have a situation where only some modifications are applied and others are not. Such situations are dangerous and hard to manage<a href="chap65.xhtml#fn-pokemon">4</a>. Thanks to assertive checks, errors are harder to miss and our state is more stable.</li>
+<li><p>Expectations are visible even to those programmers who are not reading the documentation.</p>
+</li>
+<li><p>&#x5373;&#x4F7F;&#x662F;&#x90A3;&#x4E9B;&#x6CA1;&#x6709;&#x9605;&#x8BFB;&#x6587;&#x6863;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x4E5F;&#x80FD;&#x770B;&#x5230;&#x671F;&#x671B;&#x3002;</p>
+</li>
+<li><p>If they are not satisfied, the function throws an exception instead of leading to unexpected behavior. It is important that these exceptions are thrown before the state is modified and so we will not have a situation where only some modifications are applied and others are not. Such situations are dangerous and hard to manage<a href="chap65.xhtml#fn-pokemon">4</a>. Thanks to assertive checks, errors are harder to miss and our state is more stable.</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x4E0D;&#x6EE1;&#x8DB3;&#x8FD9;&#x4E9B;&#x6761;&#x4EF6;&#xFF0C;&#x51FD;&#x6570;&#x5C06;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5BFC;&#x81F4;&#x610F;&#x5916;&#x884C;&#x4E3A;&#x3002;&#x91CD;&#x8981;&#x7684;&#x662F;&#xFF0C;&#x8FD9;&#x4E9B;&#x5F02;&#x5E38;&#x5728;&#x72B6;&#x6001;&#x88AB;&#x4FEE;&#x6539;&#x4E4B;&#x524D;&#x88AB;&#x629B;&#x51FA;&#xFF0C;&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x53EA;&#x6709;&#x4E00;&#x4E9B;&#x4FEE;&#x6539;&#x88AB;&#x5E94;&#x7528;&#x800C;&#x5176;&#x4ED6;&#x4FEE;&#x6539;&#x6CA1;&#x6709;&#x88AB;&#x5E94;&#x7528;&#x7684;&#x60C5;&#x51B5;&#x3002;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x5F88;&#x5371;&#x9669;&#xFF0C;&#x4E5F;&#x5F88;&#x96BE;&#x63A7;&#x5236;<a href="chap65.xhtml#fn-pokemon">4</a>. &#x7531;&#x4E8E;&#x679C;&#x65AD;&#x7684;&#x68C0;&#x67E5;&#xFF0C;&#x9519;&#x8BEF;&#x66F4;&#x96BE;&#x88AB;&#x5FFD;&#x7565;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x72B6;&#x6001;&#x4E5F;&#x66F4;&#x52A0;&#x7A33;&#x5B9A;&#x3002;</p>
+</li>
+</ul>
+<ul>
 <li>Code is to some degree self-checking. There is less of a need to be unit-tested when these conditions are checked in the code.</li>
-<li>All checks listed above work with smart-casting, so thanks to them there is less casting required.</li>
+<li><p>&#x4EE3;&#x7801;&#x5728;&#x67D0;&#x79CD;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x81EA;&#x68C0;&#x7684;&#x3002;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x68C0;&#x67E5;&#x8FD9;&#x4E9B;&#x6761;&#x4EF6;&#x65F6;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x3002;</p>
+</li>
+<li><p>All checks listed above work with smart-casting, so thanks to them there is less casting required.</p>
+</li>
+<li>&#x4E0A;&#x9762;&#x5217;&#x51FA;&#x7684;&#x6240;&#x6709;&#x68C0;&#x67E5;&#x90FD;&#x4E0E;&#x667A;&#x80FD;&#x94F8;&#x9020;&#x6709;&#x5173;&#xFF0C;&#x56E0;&#x6B64;&#x7531;&#x4E8E;&#x5B83;&#x4EEC;&#xFF0C;&#x9700;&#x8981;&#x7684;&#x94F8;&#x9020;&#x66F4;&#x5C11;&#x3002;</li>
 </ul>
 <p>Let&#x2019;s talk about different kinds of checks, and why we need them. Starting from the most popular one: the arguments check.</p>
+<p>&#x8BA9;&#x6211;&#x4EEC;&#x8C08;&#x8C08;&#x4E0D;&#x540C;&#x79CD;&#x7C7B;&#x7684;&#x652F;&#x7968;&#xFF0C;&#x4EE5;&#x53CA;&#x6211;&#x4EEC;&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x5B83;&#x4EEC;&#x3002;&#x4ECE;&#x6700;&#x6D41;&#x884C;&#x7684;&#x4E00;&#x4E2A;&#x5F00;&#x59CB;:&#x53C2;&#x6570;&#x68C0;&#x67E5;&#x3002;</p>
 <h3 id="arguments">Arguments</h3>
 <p>When you define a function with arguments, it is not uncommon to have some expectations on those arguments that cannot be expressed using the type system. Just take a look at a few examples:</p>
+<p>&#x5728;&#x5B9A;&#x4E49;&#x5E26;&#x6709;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x5BF9;&#x90A3;&#x4E9B;&#x4E0D;&#x80FD;&#x7528;&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x8868;&#x793A;&#x7684;&#x53C2;&#x6570;&#x6709;&#x4E00;&#x4E9B;&#x671F;&#x671B;&#x662F;&#x5F88;&#x5E38;&#x89C1;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;:</p>
 <ul>
 <li>When you calculate the factorial of a number, you might require this number to be a positive integer.</li>
-<li>When you look for clusters, you might require a list of points to not be empty.</li>
-<li>When you send an email to a user you might require that user to have an email, and this value to be a correct email address (assuming that user should check email correctness before using this function).</li>
+<li><p>&#x5F53;&#x4F60;&#x8BA1;&#x7B97;&#x4E00;&#x4E2A;&#x6570;&#x7684;&#x9636;&#x4E58;&#x65F6;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x8981;&#x6C42;&#x8FD9;&#x4E2A;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6B63;&#x6574;&#x6570;&#x3002;</p>
+</li>
+<li><p>When you look for clusters, you might require a list of points to not be empty.</p>
+</li>
+<li><p>&#x5F53;&#x4F60;&#x5BFB;&#x627E;&#x96C6;&#x7FA4;&#x65F6;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x4E0D;&#x4E3A;&#x7A7A;&#x7684;&#x70B9;&#x5217;&#x8868;&#x3002;</p>
+</li>
+<li><p>When you send an email to a user you might require that user to have an email, and this value to be a correct email address (assuming that user should check email correctness before using this function).</p>
+</li>
+<li>&#x5F53;&#x4F60;&#x53D1;&#x9001;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x7ED9;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x65F6;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x8981;&#x6C42;&#x8FD9;&#x4E2A;&#x7528;&#x6237;&#x6709;&#x4E00;&#x4E2A;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#xFF0C;&#x5E76;&#x4E14;&#x8FD9;&#x4E2A;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x6B63;&#x786E;&#x7684;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x5730;&#x5740;(&#x5047;&#x8BBE;&#x7528;&#x6237;&#x5728;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E4B;&#x524D;&#x5E94;&#x8BE5;&#x68C0;&#x67E5;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x7684;&#x6B63;&#x786E;&#x6027;)&#x3002;</li>
 </ul>
 <p>The most universal and direct Kotlin way to state those requirements is using the <code>require</code> function that checks this requirement and throws an exception if it is not satisfied:</p>
+<p>&#x6700;&#x901A;&#x7528;&#x548C;&#x76F4;&#x63A5;&#x7684;Kotlin&#x65B9;&#x5F0F;&#x6765;&#x58F0;&#x660E;&#x8FD9;&#x4E9B;&#x9700;&#x6C42;&#x662F;&#x4F7F;&#x7528;&apos; require &apos;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x68C0;&#x67E5;&#x8FD9;&#x4E2A;&#x9700;&#x6C42;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6EE1;&#x8DB3;&#x5C31;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">factorial</span><span class="hljs-params">(n: <span class="hljs-type">Int</span>)</span>: <span class="hljs-keyword">Long</span> {</span>
    require(n &gt;= <span class="hljs-number">0</span>)
    <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> (n <span class="hljs-type">&lt;= 1) 1 else factorial(n - 1) * n
@@ -1190,25 +1216,36 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 }
 </code></pre>
 <p>Notice that these requirements are highly visible thanks to the fact they are declared at the very beginning of the functions. This makes them clear for the user reading those functions (though the requirements should be stated in documentation as well because not everyone reads function bodies).</p>
+<p>&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x7531;&#x4E8E;&#x8FD9;&#x4E9B;&#x9700;&#x6C42;&#x662F;&#x5728;&#x51FD;&#x6570;&#x7684;&#x6700;&#x5F00;&#x59CB;&#x5C31;&#x58F0;&#x660E;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x4EEC;&#x662F;&#x975E;&#x5E38;&#x660E;&#x663E;&#x7684;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;&#x8BFB;&#x53D6;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x7684;&#x7528;&#x6237;&#x5F88;&#x6E05;&#x695A;(&#x5C3D;&#x7BA1;&#x9700;&#x6C42;&#x4E5F;&#x5E94;&#x8BE5;&#x5728;&#x6587;&#x6863;&#x4E2D;&#x8BF4;&#x660E;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x662F;&#x6BCF;&#x4E2A;&#x4EBA;&#x90FD;&#x8BFB;&#x53D6;&#x51FD;&#x6570;&#x4F53;)&#x3002;</p>
 <p>Those expectations cannot be ignored, because the <code>require</code> function throws an
 <code>IllegalArgumentException</code> when the predicate is not satisfied. When such a block is placed at the beginning of the function we know that if an argument is incorrect, the function will stop immediately and the user won&#x2019;t miss it. The exception will be clear in opposition to the potentially strange result that might propagate far until it fails. In other words, when we properly specify our expectations on arguments at the beginning of the function, we can then assume that those expectations will be satisfied.</p>
-<p>We can also specify a lazy message for this exception in a lambda expression after the call:</p>
+<p>&#x8FD9;&#x4E9B;&#x671F;&#x671B;&#x4E0D;&#x80FD;&#x88AB;&#x5FFD;&#x7565;&#xFF0C;&#x56E0;&#x4E3A;&#x5F53;&#x671F;&#x671B;&#x4E0D;&#x6EE1;&#x8DB3;&#x65F6;&#xFF0C;<code>require</code>&#x51FD;&#x6570;&#x5C06;&#x629B;&#x51FA;<code>IllegalArgumentException</code>&#x3002;&#x5F53;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x5757;&#x4EE3;&#x7801;&#x653E;&#x5728;&#x51FD;&#x6570;&#x7684;&#x5F00;&#x5934;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x5982;&#x679C;&#x53C2;&#x6570;&#x4E0D;&#x6B63;&#x786E;&#xFF0C;&#x51FD;&#x6570;&#x5C06;&#x7ACB;&#x5373;&#x505C;&#x6B62;&#xFF0C;&#x7528;&#x6237;&#x4E0D;&#x4F1A;&#x9519;&#x8FC7;&#x5B83;&#x3002;&#x8FD9;&#x4E2A;&#x4F8B;&#x5916;&#x5C06;&#x4E0E;&#x53EF;&#x80FD;&#x4F20;&#x64AD;&#x5230;&#x5F88;&#x8FDC;&#x76F4;&#x5230;&#x548C;&#x5931;&#x8D25;&#x7684;&#x6F5C;&#x5728;&#x5947;&#x602A;&#x7ED3;&#x679C;&#x5F62;&#x6210;&#x9C9C;&#x660E;&#x5BF9;&#x6BD4;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x5728;&#x51FD;&#x6570;&#x5F00;&#x59CB;&#x65F6;&#x9002;&#x5F53;&#x5730;&#x6307;&#x5B9A;&#x6211;&#x4EEC;&#x5BF9;&#x53C2;&#x6570;&#x7684;&#x671F;&#x671B;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5047;&#x8BBE;&#x8FD9;&#x4E9B;&#x671F;&#x671B;&#x5C06;&#x5F97;&#x5230;&#x6EE1;&#x8DB3;&#x3002;</p>
+<p>We can also specify a lazy message for this exception in a lambda expression after the call:
+&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x8C03;&#x7528;&#x540E;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x4E3A;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5EF6;&#x8FDF;&#x6D88;&#x606F;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">factorial</span><span class="hljs-params">(n: <span class="hljs-type">Int</span>)</span>: <span class="hljs-keyword">Long</span> {</span>
    require(n &gt;= <span class="hljs-number">0</span>) { <span class="hljs-string">&quot;Cannot calculate factorial of $n &quot;</span> +
 <span class="hljs-string">&quot;because it is smaller than 0&quot;</span> }
    <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> (n <span class="hljs-type">&lt;= 1) 1 else factorial(n - 1) * n
 }
 </span></code></pre>
-<p>The <code>require</code> function is used when we specify requirements on arguments.</p>
-<p>Another common case is when we have expectations on the current state, and in such a case, we can use the <code>check</code> function instead.</p>
+<p>The <code>require</code> function is used when we specify requirements on arguments.
+require&#x51FD;&#x6570;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x53C2;&#x6570;&#x7684;&#x8981;&#x6C42;&#x3002;</p>
+<p>Another common case is when we have expectations on the current state, and in such a case, we can use the <code>check</code> function instead.
+&#x53E6;&#x4E00;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x60C5;&#x51B5;&#x662F;&#x5F53;&#x6211;&#x4EEC;&#x5BF9;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x6709;&#x671F;&#x671B;&#x65F6;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>check</code>&#x51FD;&#x6570;&#x4EE3;&#x66FF;&#x3002;</p>
 <h3 id="state">State</h3>
-<p>It is not uncommon that we only allow using some functions in concrete conditions. A few common examples:</p>
+<h3 id="&#x72B6;&#x6001;">&#x72B6;&#x6001;</h3>
+<p>It is not uncommon that we only allow using some functions in concrete conditions. A few common examples:
+&#x6211;&#x4EEC;&#x53EA;&#x5141;&#x8BB8;&#x5728;&#x5177;&#x4F53;&#x6761;&#x4EF6;&#x4E0B;&#x4F7F;&#x7528;&#x67D0;&#x4E9B;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x662F;&#x5F88;&#x5E38;&#x89C1;&#x7684;&#x3002;&#x4E00;&#x4E9B;&#x5E38;&#x89C1;&#x7684;&#x4F8B;&#x5B50;:</p>
 <ul>
 <li>Some functions might need an object to be initialized first.</li>
+<li>&#x2014;&#x6709;&#x4E9B;&#x51FD;&#x6570;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5148;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;</li>
 <li>Actions might be allowed only if the user is logged in.</li>
+<li>&#x53EA;&#x6709;&#x5728;&#x7528;&#x6237;&#x767B;&#x5F55;&#x65F6;&#x624D;&#x5141;&#x8BB8;&#x64CD;&#x4F5C;&#x3002;</li>
 <li>Functions might require an object to be open.</li>
+<li>&#x51FD;&#x6570;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;</li>
 </ul>
-<p>The standard way to check if those expectations on the state are satisfied is to use the <code>check</code> function:</p>
+<p>The standard way to check if those expectations on the state are satisfied is to use the <code>check</code> function:
+&#x68C0;&#x67E5;&#x5BF9;&#x72B6;&#x6001;&#x7684;&#x671F;&#x671B;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x7684;&#x6807;&#x51C6;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;<code>check</code> &#x51FD;&#x6570;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">speak</span><span class="hljs-params">(text: <span class="hljs-type">String</span>)</span> {</span>
    check(isInitialized)
    <span class="hljs-comment">//...</span>
@@ -1224,10 +1261,14 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
    <span class="hljs-comment">//...</span>
 }
 </code></pre>
-<p>The <code>check</code> function works similarly to <code>require</code>, but it throws an <code>IllegalStateException</code> when the stated expectation is not met. It checks if a state is correct. The exception message can be customized using a lazy message, just like with <code>require</code>. When the expectation is on the whole function, we place it at the beginning, generally after the <code>require</code> blocks. Although some state expectations are local, and <code>check</code> can be used later.</p>
+<p>The <code>check</code> function works similarly to <code>require</code>, but it throws an <code>IllegalStateException</code> when the stated expectation is not met. It checks if a state is correct. The exception message can be customized using a lazy message, just like with <code>require</code>. When the expectation is on the whole function, we place it at the beginning, generally after the <code>require</code> blocks. Although some state expectations are local, and <code>check</code> can be used later.
+<code>check</code>&#x51FD;&#x6570;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x4E0E;<code>require</code>&#x7C7B;&#x4F3C;&#xFF0C;&#x4F46;&#x5F53;&#x672A;&#x6EE1;&#x8DB3;&#x6240;&#x8FF0;&#x671F;&#x671B;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x629B;&#x51FA;<code>IllegalStateException</code>&#x3002;&#x5B83;&#x68C0;&#x67E5;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;lazy&#x6D88;&#x606F;&#x5B9A;&#x5236;&#x5F02;&#x5E38;&#x6D88;&#x606F;&#xFF0C;&#x5C31;&#x50CF;&apos;<code>require</code>&#x4E00;&#x6837;&#x3002;&#x5F53;&#x5BF9;&#x6574;&#x4E2A;&#x51FD;&#x6570;&#x6709;&#x671F;&#x671B;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x5B83;&#x653E;&#x5728;&#x5F00;&#x5934;&#xFF0C;&#x901A;&#x5E38;&#x5728;&#x201C;require&#x201D;&#x5757;&#x4E4B;&#x540E;&#x3002;&#x5C3D;&#x7BA1;&#x4E00;&#x4E9B;&#x72B6;&#x6001;&#x7684;&#x671F;&#x671B;&#x662F;&#x5C40;&#x90E8;&#x7684;&#xFF0C;&#x201C;&#x68C0;&#x67E5;&#x201D;&#x53EF;&#x4EE5;&#x5728;&#x4EE5;&#x540E;&#x4F7F;&#x7528;&#x3002;</p>
 <p>We use such checks especially when we suspect that a user might break our contract and call the function when it should not be called. Instead of trusting that they won&#x2019;t do that, it is better to check and throw an appropriate exception. We might also use it when we do not trust that our own implementation handles the state correctly. Although for such cases, when we are checking mainly for the sake of testing our own implementation, we have another function called <code>assert</code>.</p>
+<p>&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x68C0;&#x67E5;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x5F53;&#x6211;&#x4EEC;&#x6000;&#x7591;&#x7528;&#x6237;&#x53EF;&#x80FD;&#x4F1A;&#x8FDD;&#x53CD;&#x6211;&#x4EEC;&#x7684;&#x7EA6;&#x5B9A;&#xFF0C;&#x5E76;&#x5728;&#x4E0D;&#x5E94;&#x8BE5;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x65F6;&#x8C03;&#x7528;&#x5B83;&#x3002;&#x4E0E;&#x5176;&#x76F8;&#x4FE1;&#x5B83;&#x4EEC;&#x4E0D;&#x4F1A;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x4E0D;&#x5982;&#x68C0;&#x67E5;&#x5E76;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x9002;&#x5F53;&#x7684;&#x5F02;&#x5E38;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x4E0D;&#x76F8;&#x4FE1;&#x81EA;&#x5DF1;&#x7684;&#x5B9E;&#x73B0;&#x80FD;&#x591F;&#x6B63;&#x786E;&#x5904;&#x7406;&#x72B6;&#x6001;&#x65F6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B83;&#x3002;&#x5C3D;&#x7BA1;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x68C0;&#x67E5;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x6D4B;&#x8BD5;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;&#x5B9E;&#x73B0;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x6709;&#x53E6;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>assert</code>&#x7684;&#x51FD;&#x6570;&#x3002;</p>
 <h3 id="assertions">Assertions</h3>
+<h3 id="&#x65AD;&#x8A00;">&#x65AD;&#x8A00;</h3>
 <p>There are things we know to be true when a function is implemented correctly. For instance, when a function is asked to return 10 elements we might expect that it will return 10 elements. This is something we expect to be true, but it doesn&#x2019;t mean we are always right. We all make mistakes. Maybe we made a mistake in the implementation. Maybe someone changed a function we used and our function does not work properly anymore. Maybe our function does not work correctly anymore because it was refactored. For all those problems the most universal solution is that we should write unit tests that check if our expectations match reality:</p>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x88AB;&#x6B63;&#x786E;&#x5B9E;&#x73B0;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x6709;&#x4E9B;&#x4E8B;&#x60C5;&#x662F;&#x6B63;&#x786E;&#x7684;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x88AB;&#x8981;&#x6C42;&#x8FD4;&#x56DE;10&#x4E2A;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x671F;&#x671B;&#x5B83;&#x8FD4;&#x56DE;10&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x662F;&#x6211;&#x4EEC;&#x6240;&#x671F;&#x671B;&#x7684;&#xFF0C;&#x4F46;&#x8FD9;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x603B;&#x662F;&#x6B63;&#x786E;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x90FD;&#x4F1A;&#x72AF;&#x9519;&#x3002;&#x4E5F;&#x8BB8;&#x6211;&#x4EEC;&#x5728;&#x6267;&#x884C;&#x4E0A;&#x72AF;&#x4E86;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#x3002;&#x4E5F;&#x8BB8;&#x6709;&#x4EBA;&#x6539;&#x53D8;&#x4E86;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x51FD;&#x6570;&#x4E0D;&#x518D;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#x3002;&#x4E5F;&#x8BB8;&#x6211;&#x4EEC;&#x7684;&#x51FD;&#x6570;&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x88AB;&#x91CD;&#x6784;&#x4E86;&#x3002;&#x5BF9;&#x4E8E;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#xFF0C;&#x6700;&#x666E;&#x904D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x7F16;&#x5199;&#x5355;&#x5143;&#x6D4B;&#x8BD5;</p>
 <pre><code class="lang-kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StackTest</span> </span>{
 
    @Test
@@ -1241,6 +1282,7 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 }
 </code></pre>
 <p>Unit tests should be our most basic way to check implementation correctness but notice here that the fact that popped list size matches the desired one is rather universal to this function. It would be useful to add such a check in nearly every <code>pop</code> call. Having only a single check for this single use is rather naive because there might be some edge-cases. A better solution is to include the assertion in the function:</p>
+<p>&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x5E94;&#x8BE5;&#x662F;&#x6211;&#x4EEC;&#x68C0;&#x67E5;&#x5B9E;&#x73B0;&#x6B63;&#x786E;&#x6027;&#x7684;&#x6700;&#x57FA;&#x672C;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x8BF4;&#xFF0C;&#x5F39;&#x51FA;&#x5217;&#x8868;&#x5927;&#x5C0F;&#x4E0E;&#x6240;&#x9700;&#x5927;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x4E8B;&#x5B9E;&#x662F;&#x76F8;&#x5F53;&#x666E;&#x904D;&#x7684;&#x3002;&#x5728;&#x51E0;&#x4E4E;&#x6BCF;&#x4E00;&#x4E2A;&#x201C;pop&#x201D;&#x7535;&#x8BDD;&#x4E2D;&#x90FD;&#x6DFB;&#x52A0;&#x8FD9;&#x6837;&#x7684;&#x7B7E;&#x5230;&#x4F1A;&#x5F88;&#x6709;&#x7528;&#x3002;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E2A;&#x5355;&#x4E00;&#x7684;&#x7528;&#x9014;&#x53EA;&#x8FDB;&#x884C;&#x5355;&#x4E00;&#x7684;&#x68C0;&#x67E5;&#x662F;&#x76F8;&#x5F53;&#x5E7C;&#x7A1A;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x8FB9;&#x7F18;&#x60C5;&#x51B5;&#x3002;&#x66F4;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x5305;&#x542B;&#x65AD;&#x8A00;</p>
 <pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">pop</span><span class="hljs-params">(num: <span class="hljs-type">Int</span> = 1)</span>: List<span class="hljs-type">&lt;T&gt;</span> {</span>
    <span class="hljs-comment">//...</span>
    assert(ret.size == num)
@@ -1248,16 +1290,25 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 }
 </code></pre>
 <p>Such conditions are currently enabled only in Kotlin/JVM, and they are not checked unless they are enabled using the <code>-ea</code> JVM option. We should rather treat them as part of unit tests - they check if our code works as expected. By default, they are not throwing any errors in production. They are enabled by default only when we run tests. This is generally desired because if we made an error, we might rather hope that the user won&#x2019;t notice. If this is a serious error that is probable and might have significant consequences, use <code>check</code> instead. The main advantages of having <code>assert</code> checks in functions instead of in unit tests are:</p>
+<p>&#x8FD9;&#x4E9B;&#x6761;&#x4EF6;&#x76EE;&#x524D;&#x53EA;&#x5728;Kotlin/JVM&#x4E2D;&#x542F;&#x7528;&#xFF0C;&#x9664;&#x975E;&#x4F7F;&#x7528;&#x201C;-ea&#x201D;JVM&#x9009;&#x9879;&#x542F;&#x7528;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x4F1A;&#x68C0;&#x67E5;&#x5B83;&#x4EEC;&#x3002;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5C06;&#x5B83;&#x4EEC;&#x89C6;&#x4E3A;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x2014;&#x2014;&#x5B83;&#x4EEC;&#x68C0;&#x67E5;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x5426;&#x5982;&#x9884;&#x671F;&#x90A3;&#x6837;&#x5DE5;&#x4F5C;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5B83;&#x4EEC;&#x4E0D;&#x4F1A;&#x5728;&#x751F;&#x4EA7;&#x4E2D;&#x629B;&#x51FA;&#x4EFB;&#x4F55;&#x9519;&#x8BEF;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5B83;&#x4EEC;&#x4EC5;&#x5728;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x65F6;&#x542F;&#x7528;&#x3002;&#x8FD9;&#x901A;&#x5E38;&#x662F;&#x6211;&#x4EEC;&#x6240;&#x5E0C;&#x671B;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x72AF;&#x4E86;&#x9519;&#x8BEF;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x66F4;&#x5E0C;&#x671B;&#x7528;&#x6237;&#x4E0D;&#x4F1A;&#x6CE8;&#x610F;&#x5230;&#x3002;&#x5982;&#x679C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x4E25;&#x91CD;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x80FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E25;&#x91CD;&#x7684;&#x540E;&#x679C;&#xFF0C;&#x90A3;&#x4E48;&#x4F7F;&#x7528;&apos; check &apos;&#x4EE3;&#x66FF;&#x3002;&#x4F7F;&#x7528;&#x201C;assert&#x201D;&#x7B7E;&#x5165;&#x7684;&#x4E3B;&#x8981;&#x4F18;&#x70B9;</p>
 <ul>
 <li>Assertions make code self-checking and lead to more effective testing.</li>
+<li>&#x65AD;&#x8A00;&#x4F7F;&#x4EE3;&#x7801;&#x81EA;&#x6211;&#x68C0;&#x67E5;&#xFF0C;&#x5E76;&#x5BFC;&#x81F4;&#x66F4;&#x6709;&#x6548;&#x7684;&#x6D4B;&#x8BD5;&#x3002;</li>
 <li>Expectations are checked for every real use-case instead of for concrete cases.</li>
+<li>&#x671F;&#x671B;&#x662F;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;&#x771F;&#x5B9E;&#x7684;&#x7528;&#x4F8B;&#x800C;&#x4E0D;&#x662F;&#x5177;&#x4F53;&#x7684;&#x7528;&#x4F8B;&#x8FDB;&#x884C;&#x68C0;&#x67E5;&#x7684;&#x3002;</li>
 <li>We can use them to check something at the exact point of execution.</li>
+<li>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x7528;&#x5B83;&#x4EEC;&#x6765;&#x68C0;&#x67E5;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#x3002;</li>
 <li>We make code fail early, closer to the actual problem. Thanks to that we can also easily find where and when the unexpected behavior started.</li>
+<li>&#x6211;&#x4EEC;&#x8BA9;&#x4EE3;&#x7801;&#x5C3D;&#x65E9;&#x5931;&#x8D25;&#xFF0C;&#x66F4;&#x63A5;&#x8FD1;&#x5B9E;&#x9645;&#x95EE;&#x9898;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x5730;&#x627E;&#x5230;&#x610F;&#x5916;&#x884C;&#x4E3A;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x95F4;&#x548C;&#x5730;&#x70B9;&#x3002;</li>
 </ul>
-<p>Just remember that for them to be used, we still need to write unit tests. In a standard application run, <code>assert</code> will not throw any exceptions.</p>
-<p>Such assertions are a common practice in Python. Not so much in Java. In Kotlin feel free to use them to make your code more reliable.</p>
+<p>Just remember that for them to be used, we still need to write unit tests. In a standard application run, <code>assert</code> will not throw any exceptions.
+&#x53EA;&#x8981;&#x8BB0;&#x4F4F;&#xFF0C;&#x8981;&#x4F7F;&#x7528;&#x5B83;&#x4EEC;&#xFF0C;&#x6211;&#x4EEC;&#x4ECD;&#x7136;&#x9700;&#x8981;&#x7F16;&#x5199;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x3002;&#x5728;&#x6807;&#x51C6;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x4E2D;&#xFF0C;<code>assert</code>&#x4E0D;&#x4F1A;&#x629B;&#x51FA;&#x4EFB;&#x4F55;&#x5F02;&#x5E38;&#x3002;</p>
+<p>Such assertions are a common practice in Python. Not so much in Java. In Kotlin feel free to use them to make your code more reliable.
+&#x8FD9;&#x6837;&#x7684;&#x65AD;&#x8A00;&#x662F;Python&#x4E2D;&#x7684;&#x4E00;&#x79CD;&#x5E38;&#x89C1;&#x5B9E;&#x8DF5;&#x3002;&#x5728;Java&#x4E2D;&#x5C31;&#x6CA1;&#x90A3;&#x4E48;&#x591A;&#x4E86;&#x3002;&#x5728;Kotlin&#x4E2D;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x4F7F;&#x7528;&#x5B83;&#x4EEC;&#x4EE5;&#x4F7F;&#x60A8;&#x7684;&#x4EE3;&#x7801;&#x66F4;&#x53EF;&#x9760;&#x3002;</p>
 <h3 id="nullability-and-smart-casting">Nullability and smart casting</h3>
+<h3 id="&#x53EF;&#x7A7A;&#xFF0C;&#x548C;&#x667A;&#x80FD;&#x8F6C;&#x6362;">&#x53EF;&#x7A7A;&#xFF0C;&#x548C;&#x667A;&#x80FD;&#x8F6C;&#x6362;</h3>
 <p>Both <code>require</code> and <code>check</code> have Kotlin contracts that state that when the function returns, its predicate is true after this check.</p>
+<p>&apos; require &apos;&#x548C;&apos; check &apos;&#x90FD;&#x6709;Kotlin&#x5951;&#x7EA6;&#xFF0C;&#x58F0;&#x660E;&#x5728;&#x5F53;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x65F6;&#xFF0C;&#x5B83;&#x8868;&#x660E;&#x5728;&#x68C0;&#x67E5;&#x4E4B;&#x540E;&#x4E3A;&#x771F;&#x3002;</p>
 <pre><code class="lang-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">inline</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">require</span><span class="hljs-params">(value: <span class="hljs-type">Boolean</span>)</span>: <span class="hljs-keyword">Unit</span> {</span>
    contract {
        returns() implies value
@@ -1266,13 +1317,15 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 }
 </code></pre>
 <p>Everything that is checked in those blocks will be treated as true later in the same function. This works well with smart casting because once we check if something is true, the compiler will treat it so. In the below example we require a person&#x2019;s outfit to be a <code>Dress</code>. After that, assuming that the outfit property is final, it will be smart cast to <code>Dress</code>.</p>
+<p>&#x5728;&#x8FD9;&#x4E9B;&#x5757;&#x4E2D;&#x7B7E;&#x5165;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x5C06;&#x5728;&#x7A0D;&#x540E;&#x7684;&#x540C;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#x88AB;&#x89C6;&#x4E3A;true&#x3002;&#x8FD9;&#x5728;&#x667A;&#x80FD;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x4E2D;&#x5DE5;&#x4F5C;&#x5F97;&#x5F88;&#x597D;&#xFF0C;&#x56E0;&#x4E3A;&#x4E00;&#x65E6;&#x6211;&#x4EEC;&#x68C0;&#x67E5;&#x67D0;&#x4EF6;&#x4E8B;&#x662F;&#x5426;&#x4E3A;&#x771F;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5C31;&#x4F1A;&#x8FD9;&#x6837;&#x5BF9;&#x5F85;&#x5B83;&#x3002;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x6C42;&#x4E00;&#x4E2A;&#x4EBA;&#x7684;&#x670D;&#x88C5;&#x662F;&#x201C;&#x8FDE;&#x8863;&#x88D9;&#x201D;&#x3002;&#x5728;&#x90A3;&#x4E4B;&#x540E;&#xFF0C;&#x5047;&#x8BBE;&#x670D;&#x88C5;&#x5C5E;&#x6027;&#x662F;&#x6700;&#x7EC8;&#x7684;&#xFF0C;&#x5B83;&#x5C06;&#x662F;&#x806A;&#x660E;&#x7684;&#x94F8;&#x9020;&#x201C;&#x7740;&#x88C5;&#x201D;&#x3002;</p>
 <pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">changeDress</span><span class="hljs-params">(person: <span class="hljs-type">Person</span>)</span> {</span>
    require(person.outfit <span class="hljs-keyword">is</span> Dress)
    <span class="hljs-variable"><span class="hljs-keyword">val</span> dress</span>: Dress = person.outfit
    <span class="hljs-comment">//...</span>
 }
 </code></pre>
-<p>This characteristic is especially useful when we check if something is null:</p>
+<p>This characteristic is especially useful when we check if something is null:
+&#x5F53;&#x6211;&#x4EEC;&#x68C0;&#x67E5;&#x67D0;&#x7269;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#x7279;&#x522B;&#x6709;&#x7528;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>(<span class="hljs-variable"><span class="hljs-keyword">val</span> email</span>: String?)
 
 <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">sendEmail</span><span class="hljs-params">(person: <span class="hljs-type">Person, message: String</span>)</span> {</span>
@@ -1282,6 +1335,7 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 }
 </code></pre>
 <p>For such cases, we even have special functions: <code>requireNotNull</code> and <code>checkNotNull</code>. They both have the capability to smart cast variables, and they can also be used as expressions to &#x201C;unpack&#x201D; it:</p>
+<p>&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x4EEC;&#x751A;&#x81F3;&#x6709;&#x7279;&#x6B8A;&#x7684;&#x51FD;&#x6570;:&apos; requireNotNull &apos;&#x548C;&apos; checkNotNull &apos;&#x3002;&#x5B83;&#x4EEC;&#x90FD;&#x6709;&#x667A;&#x80FD;&#x8F6C;&#x6362;&#x53D8;&#x91CF;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x5B83;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x8868;&#x8FBE;&#x5F0F;&#x6765;&#x201C;&#x89E3;&#x5305;&#x201D;&#x5B83;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span>(<span class="hljs-variable"><span class="hljs-keyword">val</span> email</span>: String?)
 <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">validateEmail</span><span class="hljs-params">(email: <span class="hljs-type">String</span>)</span> { <span class="hljs-comment">/*...*/</span> }</span>
 
@@ -1298,12 +1352,14 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 }
 </code></pre>
 <p>For nullability, it is also popular to use the Elvis operator with <code>throw</code> or <code>return</code> on the right side. Such a structure is also highly readable and at the same time, it gives us more flexibility in deciding what behavior we want to achieve. First of all, we can easily stop a function using <code>return</code> instead of throwing an error:</p>
+<p>&#x5BF9;&#x4E8E;&#x53EF;&#x7A7A;&#x6027;&#xFF0C;&#x4F7F;&#x7528;&#x53F3;&#x8FB9;&#x5E26;&#x6709;&apos; throw &apos;&#x6216;&apos; return &apos;&#x7684;Elvis&#x64CD;&#x4F5C;&#x7B26;&#x4E5F;&#x5F88;&#x6D41;&#x884C;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x7ED3;&#x6784;&#x4E5F;&#x662F;&#x9AD8;&#x5EA6;&#x53EF;&#x8BFB;&#x7684;&#xFF0C;&#x540C;&#x65F6;&#xFF0C;&#x5B83;&#x7ED9;&#x4E86;&#x6211;&#x4EEC;&#x66F4;&#x591A;&#x7684;&#x7075;&#x6D3B;&#x6027;&#x6765;&#x51B3;&#x5B9A;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x5B9E;&#x73B0;&#x4EC0;&#x4E48;&#x884C;&#x4E3A;&#x3002;&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x5730;&#x4F7F;&#x7528;&apos; return &apos;&#x6765;&#x505C;&#x6B62;&#x51FD;&#x6570;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x629B;&#x51FA;&#x9519;&#x8BEF;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">sendEmail</span><span class="hljs-params">(person: <span class="hljs-type">Person, text: String</span>)</span> {</span>
    <span class="hljs-variable"><span class="hljs-keyword">val</span> email</span>: String = person.email ?: <span class="hljs-keyword">return</span>
    <span class="hljs-comment">//...</span>
 }
 </code></pre>
 <p>If we need to make more than one action if a property is incorrectly <code>null</code>, we can always add them by wrapping <code>return</code> or <code>throw</code> into the <code>run</code> function. Such a capability might be useful if we would need to log why the function was stopped:</p>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x9519;&#x8BEF;&#x5730;&#x4E3A;&apos; null &apos;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6267;&#x884C;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#xFF0C;&#x6211;&#x4EEC;&#x603B;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5C06;&apos; return &apos;&#x6216;&apos; throw &apos;&#x5305;&#x88C5;&#x5230;&apos; run &apos;&#x51FD;&#x6570;&#x4E2D;&#x6765;&#x6DFB;&#x52A0;&#x5B83;&#x4EEC;&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8BB0;&#x5F55;&#x51FD;&#x6570;&#x505C;&#x6B62;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x529F;&#x80FD;&#x53EF;&#x80FD;&#x662F;&#x6709;&#x7528;&#x7684;:</p>
 <pre><code class="lang-kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">sendEmail</span><span class="hljs-params">(person: <span class="hljs-type">Person, text: String</span>)</span> {</span>
    <span class="hljs-variable"><span class="hljs-keyword">val</span> email</span>: String = person.email ?: run {
        log(<span class="hljs-string">&quot;Email not sent, no email address&quot;</span>)
@@ -1313,13 +1369,20 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 }
 </code></pre>
 <p>The Elvis operator with <code>return</code> or <code>throw</code> is a popular and idiomatic way to specify what should happen in case of variable nullability and we should not hesitate to use it. Again, if it is possible, keep such checks at the beginning of the function to make them visible and clear.</p>
+<p>&#x5E26;&#x6709;&apos; return &apos;&#x6216;&apos; throw &apos;&#x7684;Elvis&#x64CD;&#x4F5C;&#x7B26;&#x662F;&#x4E00;&#x79CD;&#x6D41;&#x884C;&#x4E14;&#x60EF;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x7528;&#x6765;&#x6307;&#x5B9A;&#x5728;&#x53D8;&#x91CF;&#x4E3A;&#x7A7A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5E94;&#x8BE5;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#xFF0C;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x6BEB;&#x4E0D;&#x72B9;&#x8C6B;&#x5730;&#x4F7F;&#x7528;&#x5B83;&#x3002;&#x540C;&#x6837;&#xFF0C;&#x5982;&#x679C;&#x53EF;&#x80FD;&#x7684;&#x8BDD;&#xFF0C;&#x5C06;&#x8FD9;&#x4E9B;&#x68C0;&#x67E5;&#x653E;&#x5728;&#x51FD;&#x6570;&#x7684;&#x5F00;&#x5934;&#xFF0C;&#x4EE5;&#x4F7F;&#x5176;&#x53EF;&#x89C1;&#x548C;&#x6E05;&#x6670;&#x3002;</p>
 <h3 id="summary">Summary</h3>
-<p>Specify your expectations to:</p>
+<h3 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h3>
+<p>Specify your expectations to:
+&#x660E;&#x786E;&#x4F60;&#x7684;&#x671F;&#x671B;:</p>
 <ul>
 <li>Make them more visible.</li>
+<li>&#x8BA9;&#x4ED6;&#x4EEC;&#x66F4;&#x660E;&#x663E;</li>
 <li>Protect your application stability.</li>
+<li>&#x4FDD;&#x8BC1;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x7A33;&#x5B9A;&#x6027;&#x3002;</li>
 <li>Protect your code correctness.</li>
+<li>&#x4FDD;&#x8BC1;&#x4EE3;&#x7801;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;</li>
 <li>Smart cast variables.</li>
+<li>&#x53D8;&#x91CF;&#x53EA;&#x80FD;&#x8F6C;&#x6362;</li>
 </ul>
 <p>Four main mechanisms we use for that are:</p>
 <ul>
@@ -1328,7 +1391,8 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
 <li><code>assert</code> block - a universal way to test in testing mode if something is true.</li>
 <li>Elvis operator with <code>return</code> or <code>throw</code>.</li>
 </ul>
-<p>You might also use <code>throw</code> to throw a different error.</p>
+<p>You might also use <code>throw</code> to throw a different error.
+&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&apos; throw &apos;&#x6765;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x9519;&#x8BEF;&#x3002;</p>
 
                                 
                                 </section>
@@ -1372,7 +1436,7 @@ fun findClusters(points: List&lt;Point&gt;</span>): List<span class="hljs-type">
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Item 5 Specify Your Expectations On Arguments And State","level":"1.2.1.6","depth":3,"next":{"title":"第6条：尽可能使用标准库中提供的异常","level":"1.2.1.7","depth":3,"path":"Part 1 Good code/Chapter 1 Safety/Item 6 Prefer standard errors to custom ones.md","ref":"Part 1 Good code/Chapter 1 Safety/Item 6 Prefer standard errors to custom ones.md","articles":[]},"previous":{"title":"第4条：不要把推断类型暴露给外部","level":"1.2.1.5","depth":3,"path":"Part 1 Good code/Chapter 1 Safety/Item 4 Do not expose inferred types.md","ref":"Part 1 Good code/Chapter 1 Safety/Item 4 Do not expose inferred types.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Part 1 Good code/Chapter 1 Safety/Item 5 Specify your expectations on arguments and state.md","mtime":"2022-01-15T09:19:03.965Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-01-15T09:19:42.537Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Item 5 Specify Your Expectations On Arguments And State","level":"1.2.1.6","depth":3,"next":{"title":"第6条：尽可能使用标准库中提供的异常","level":"1.2.1.7","depth":3,"path":"Part 1 Good code/Chapter 1 Safety/Item 6 Prefer standard errors to custom ones.md","ref":"Part 1 Good code/Chapter 1 Safety/Item 6 Prefer standard errors to custom ones.md","articles":[]},"previous":{"title":"第4条：不要把推断类型暴露给外部","level":"1.2.1.5","depth":3,"path":"Part 1 Good code/Chapter 1 Safety/Item 4 Do not expose inferred types.md","ref":"Part 1 Good code/Chapter 1 Safety/Item 4 Do not expose inferred types.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Part 1 Good code/Chapter 1 Safety/Item 5 Specify your expectations on arguments and state.md","mtime":"2022-03-20T05:14:51.723Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-20T05:15:36.381Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
